@@ -4,6 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
+//Given two strings where first string may contain wild card characters and second string is a normal string. Write a function that returns true if the two strings match. The following are allowed wild card characters in first string.
+
+//* --> Matches with 0 or more instances of any character or set of characters.
+//? --> Matches with any one character
+
 namespace StringMatchWithWildCards
 {
     class Program
@@ -42,8 +48,19 @@ namespace StringMatchWithWildCards
             // if only the second string has reached its end,
             // the patterns did not match up. First should not be 
             // empty but in case it is, return false
-            else if (String.IsNullOrEmpty(first) || String.IsNullOrEmpty(second))
+            else if (String.IsNullOrEmpty(first)) 
             {
+                return false;
+            }
+            else if (String.IsNullOrEmpty(second))
+            {
+                if (first.Length == 1 &&
+                    (first[0] == '*') || (first[0] == '?')
+                   )
+                {
+                    return true;
+                }
+
                 return false;
             }
             else if (first[0] == second[0] || first[0] == '?')
